@@ -1,20 +1,20 @@
 version: '3'
 services:
-  web:
+  webserver:
     image: nginx
     volumes:
-      - ./web/api.conf:/etc/nginx/conf.d/default.conf
+      - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "8080:80"
     depends_on:
-      - api
+      - php
 
-  api:
+  php:
     build:
-      context: ./api
+      context: php
     environment:
       - PHP_IDE_CONFIG=serverName=magic
     volumes:
       - ./public:/var/www/public
-      - ./api/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./api/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./config/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
