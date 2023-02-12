@@ -1,14 +1,1 @@
-{
-  "name": "nikron-d/php-docker-boilerplate",
-  "description": "description",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Alexander",
-      "email": "nikron-d@mail.ru"
-    }
-  ],
-  "require": {
-  }
-}
+{}
