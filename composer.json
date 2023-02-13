@@ -1,1 +1,9 @@
-{}
+{
+  "name": "anikolaefff/php-docker-boilerplate",
+  "authors": [
+    {
+      "name": "anikolaefff"
+    }
+  ],
+  "require": {}
+}
