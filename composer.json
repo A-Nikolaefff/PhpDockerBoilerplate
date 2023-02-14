@@ -1,5 +1,10 @@
 {
   "name": "anikolaefff/php-docker-boilerplate",
+  "autoload": {
+    "psr-4": {
+      "App\\": "public/"
+    }
+  },
   "authors": [
     {
       "name": "anikolaefff"
