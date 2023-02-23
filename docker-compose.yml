@@ -18,8 +18,8 @@ services:
     build:
       context: images/php
     container_name: "${PREFIX}php"
-    environment:
-      - PHP_IDE_CONFIG=serverName=magic
+    env_file:
+      - .env
     volumes:
       - ./public:/var/www/public
       - ./composer.json:/var/www/composer.json
@@ -39,3 +39,4 @@ services:
     environment:
       POSTGRES_USER: "${PGSQL_USER}"
       POSTGRES_PASSWORD: "${PGSQL_PASSWORD}"
+      POSTGRES_DB: "${PGSQL_DB}"
