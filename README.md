@@ -1,14 +1,12 @@
-# php-project-boilerplate
+# project-boilerplate
 
-# Использование в Windows
-
-Все действия выполняются из директории *bin* или из главной с использованием префикса bin/
+# Использование в Windows:
 
 Запуск (сокращенная форма для "docker-compose up -d")
-* up
+* bin/up
 
 Остановка (сокращенная форма для "docker-compose down")
-* down
+* bin/up
 
 Зайти в контейнер (сокращенная форма для "docker exec -it *имя контейнера* /bin/bash")
-* exec *имя контейнера*
+* bin/exec *имя контейнера*
