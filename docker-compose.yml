@@ -27,3 +27,15 @@ services:
       - ./vendor:/var/www/vendor
       - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./config/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+#PostgreSQL
+  pgsql:
+    image: postgres
+    container_name: "${PREFIX}postgresql"
+    ports:
+      - "${PGSQL_PORT}:5432"
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "${PGSQL_USER}"
+      POSTGRES_PASSWORD: "${PGSQL_PASSWORD}"
