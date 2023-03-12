@@ -1,11 +1,12 @@
 <?php
 declare(strict_types = 1);
 
-namespace App;
+use App\Example;
 
 require_once "../vendor/autoload.php";
 
-echo "Hello World!";
+$example = new Example();
+$example->sayHelloWorld();
 
 
 

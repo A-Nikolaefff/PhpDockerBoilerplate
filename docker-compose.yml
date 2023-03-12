@@ -23,9 +23,10 @@ services:
       - .env
     volumes:
       - ./public:/var/www/public
+      - ./src:/var/www/src
+      - ./vendor:/var/www/vendor
       - ./composer.json:/var/www/composer.json
       - ./composer.lock:/var/www/composer.lock
-      - ./vendor:/var/www/vendor
       - ./config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./config/xdebug/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 

@@ -2,7 +2,7 @@
   "name": "anikolaefff/php-docker-boilerplate",
   "autoload": {
     "psr-4": {
-      "App\\": "public/"
+      "App\\": "src/"
     }
   },
   "authors": [
