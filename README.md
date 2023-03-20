@@ -1,18 +1,26 @@
 # PHP Project Boilerplate
 
-# Состав:
-* PHP
+### Состав:
+* PHP 8.2
+* PostgreSQL 15.2
+* MySQL 5.7
 * Xdebug
 * Composer
-* PostgreSQL
 
-# Быстрые команды (для Windows):
+### Настройка Xdebug в PHPStorm:
+* IDE key: docker
+* Использовать path mapping для папок *public* и *src*
 
-Запуск контейнеров (сокращенная форма для "docker-compose up -d")
+### Команды (Windows):
+
+Запуск контейнеров c пересборкой образов при необходимости (алиас для "docker-compose up -d --build")
 * bin/up
 
-Остановка контейнеров (сокращенная форма для "docker-compose down")
-* bin/up
+Остановка контейнеров (алиас форма для "docker-compose down")
+* bin/down
 
-Зайти в контейнер (сокращенная форма для "docker exec -it *имя контейнера* /bin/bash")
+Зайти в контейнер (алиас для "docker exec -it *имя контейнера* /bin/bash")
 * bin/exec *имя контейнера*
+
+Список запущенных контейнеров (алиас для docker ps)
+* bin/list

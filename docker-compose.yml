@@ -5,6 +5,7 @@ services:
   webserver:
     image: nginx
     container_name: "${PREFIX}nginx"
+    restart: unless-stopped
     volumes:
       - ./public:/var/www/public
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -19,6 +20,7 @@ services:
     build:
       context: images/php
     container_name: "${PREFIX}php"
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
@@ -32,8 +34,9 @@ services:
 
 #PostgreSQL
   pgsql:
-    image: postgres
+    image: postgres:15.2
     container_name: "${PREFIX}postgresql"
+    restart: unless-stopped
     ports:
       - "${PGSQL_PORT}:5432"
     volumes:
@@ -42,3 +45,17 @@ services:
       POSTGRES_USER: "${PGSQL_USER}"
       POSTGRES_PASSWORD: "${PGSQL_PASSWORD}"
       POSTGRES_DB: "${PGSQL_DB}"
+
+#MySQL
+  mysql:
+    image: mysql:5.7
+    container_name: "${PREFIX}mysql"
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
