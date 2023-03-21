@@ -34,7 +34,7 @@ services:
 
 #PostgreSQL
   pgsql:
-    image: postgres:15.2
+    image: postgres:15.1
     container_name: "${PREFIX}postgresql"
     restart: unless-stopped
     ports:
