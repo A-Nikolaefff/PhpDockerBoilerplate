@@ -1,4 +1,7 @@
 # PHP Project Boilerplate
+Сборка для быстрого развертывания локального окружения для разработки на PHP.
+Предназначена для разработки на чистом PHP или с помощью микрофреймворков
+(таких как Slim). Отдельная сборка для Laravel в [этом репозитории](https://github.com/A-Nikolaefff/laravel-project-boilerplate).
 
 ### Состав:
 * PHP 8.2
@@ -9,7 +12,7 @@
 
 ### Настройка Xdebug в PHPStorm:
 * IDE key по умолчанию: docker
-* Использовать path mapping для папок **public** и **src**
+* Использовать path mapping для директорий **public** и **src**
 
 ### Команды (Linux):
 Все команды выполнять в директории **bin/linux**
