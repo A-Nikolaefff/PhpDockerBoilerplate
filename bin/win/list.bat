@@ -1,2 +1,0 @@
-cd ../../
-docker ps
