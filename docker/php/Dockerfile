@@ -15,7 +15,7 @@ RUN delgroup dialout
 RUN addgroup --gid ${GID} --system admin
 RUN adduser --ingroup admin --disabled-password --shell /bin/sh --uid ${UID} --system admin
 
-# Replace nginx user with admin user in configuration files
+# Replace default user with admin user in configuration files
 RUN sed -i "s/user = www-data/user = admin/g" /usr/local/etc/php-fpm.d/www.conf
 RUN sed -i "s/group = www-data/group = admin/g" /usr/local/etc/php-fpm.d/www.conf
 

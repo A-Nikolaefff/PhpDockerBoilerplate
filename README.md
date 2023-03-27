@@ -4,10 +4,11 @@
 
 ### Состав:
 * PHP 8.2
-* PostgreSQL 15.1
-* MySQL 5.7
 * Xdebug
 * Composer
+* PostgreSQL 15.1
+* pgAdmin
+* MySQL 5.7
 
 ### Команды (Linux):
 Для удобства управления все основные команды внесены в Makefile
