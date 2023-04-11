@@ -1,8 +1,6 @@
 # PHP Project Boilerplate
 
-## Язык
-- [English](./README.md)
-- [Русский](./README-ru.md)
+### [English version of the readme](./README.md)
 
 ## Описание
 

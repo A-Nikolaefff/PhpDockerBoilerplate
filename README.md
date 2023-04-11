@@ -1,8 +1,6 @@
 # PHP Project Boilerplate
 
-## Language
-- [English](./README.md)
-- [Русский](./README-ru.md)
+### [Russian version of the readme](./README-ru.md)
 
 ## Description
 A build for quickly deploying a local environment for PHP development.
