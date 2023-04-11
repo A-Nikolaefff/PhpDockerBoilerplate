@@ -13,7 +13,6 @@ Separate build for Laravel in [this repository](https://github.com/A-Nikolaefff/
 * Xdebug
 * Composer
 * PostgreSQL 15.1
-* pgAdmin
 * MySQL 5.7
 
 ## Command list

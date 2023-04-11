@@ -14,7 +14,6 @@
 * Xdebug
 * Composer
 * PostgreSQL 15.1
-* pgAdmin
 * MySQL 5.7
 
 ## Cписок команд
