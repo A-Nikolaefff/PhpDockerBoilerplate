@@ -7,9 +7,11 @@ up:
 down:
 	docker-compose down
 
-ps:
-	docker ps
+list:
+	docker-compose ps
 
-exec:
-	docker exec -it $(c) /bin/bash
+enter:
+	docker exec -it $(name) /bin/bash
 
+php:
+	docker-compose exec php /bin/bash

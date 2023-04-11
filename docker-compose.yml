@@ -1,16 +1,16 @@
 version: '3'
 services:
 
-  #Nginx Server
+#Nginx Server
   nginx:
     image: nginx
     restart: unless-stopped
     volumes:
-      - ./public:/var/www/public
+      - ./src/public:/var/www/public
       - ./docker/nginx/config/default.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - "${HTTP_PORT}:80"
-      - "${HTTPS_PORT}:443"
+      - "8080:80"
+      - "8433:443"
     depends_on:
       - php
 
@@ -25,15 +25,11 @@ services:
     env_file:
       - .env
     volumes:
-      - ./public:/var/www/public
-      - ./src:/var/www/src
-      - ./vendor:/var/www/vendor
-      - ./composer.json:/var/www/composer.json
-      - ./composer.lock:/var/www/composer.lock
+      - ./src:/var/www
       - ./docker/php/config/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-  #PostgreSQL
+#PostgreSQL
   pgsql:
     build:
       context: docker/postgresql
@@ -50,18 +46,7 @@ services:
       POSTGRES_PASSWORD: "${PGSQL_PASSWORD}"
       POSTGRES_DB: "${PGSQL_DB}"
 
-  #pgAdmin
-  pgadmin:
-    image: dpage/pgadmin4
-    ports:
-      - "${PGADMIN_PORT}:80"
-    depends_on:
-      - pgsql
-    environment:
-      PGADMIN_DEFAULT_EMAIL: example@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: 123
-
-  #MySQL
+#MySQL
   mysql:
     image: mysql:5.7
     restart: unless-stopped
@@ -69,7 +54,7 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
-      - ./databases/mariadb/data:/var/lib/mysql
+      - ./databases/mysql/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: "${MYSQL_DATABASE}"
       MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"

@@ -1,3 +1,4 @@
 .idea
-data
-vendor
+/databases/postgresql/data
+/databases/mysql/data
+/src/vendor
