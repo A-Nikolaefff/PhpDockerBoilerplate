@@ -30,7 +30,7 @@ for example ```php`` `, ```pgsql``` or ```nginx``` and so on
 * Default server name: **docker**
 * Host: **localhost**
 * Port: **8080**
-* Use path mapping for **public** and **src** directories
+* Use path mapping for **src** directory
 
 ## Possible problems
 
