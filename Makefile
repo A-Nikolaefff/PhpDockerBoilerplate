@@ -13,5 +13,11 @@ list:
 enter:
 	docker exec -it $(name) /bin/bash
 
-php:
-	docker-compose exec php /bin/bash
+nginx:
+	docker-compose exec nginx /bin/bash
+
+mysql:
+	docker-compose exec mysql /bin/bash
+
+pgsql:
+	docker-compose exec pgsql /bin/bash

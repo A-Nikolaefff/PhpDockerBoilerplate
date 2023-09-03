@@ -21,10 +21,13 @@ Separate build for Laravel in [this repository](https://github.com/A-Nikolaefff/
 * ```make up``` - start containers
 * ```make down``` - stop containers
 * ```make list``` - list of running containers
+* ```make php``` - go to php container
+* ```make nginx``` - go to nginx container
+* ```make mysql``` - go to mysql container
+* ```make pgsql``` - go to postgresql container
 * ```make enter name=SERVICE``` - go to a running container (open command line terminal),
 replace ```SERVICE``` with the service name according to **docker-compose.yml**,
 for example ```php`` `, ```pgsql``` or ```nginx``` and so on
-* ```make php``` - go to php container
 
 ## Setting up Xdebug in PHPStorm
 * Default server name: **docker**
