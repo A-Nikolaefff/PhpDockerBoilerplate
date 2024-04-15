@@ -1,26 +1,38 @@
-build:
-	docker-compose build
+.PHONY: help
 
-up:
-	docker-compose up
+CONTAINER_PHP=php
 
-upd:
-	docker-compose up -d
+help: ## Print help
+	@awk 'BEGIN {FS = ":.*##"; printf "\nCommands:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
-down:
-	docker-compose down
+#--------------------------------------------- New project init command -----------------------------------------------#
 
-list:
-	docker-compose ps
+init: ## Init new laravel project with name "laravel/laravel". You will be able to change this in composer.json later.
+	@docker compose run --rm php sh -c "composer install"
 
-enter:
-	docker exec -it $(name) /bin/bash
+#------------------------------------------------- Docker commands ----------------------------------------------------#
 
-nginx:
-	docker-compose exec nginx /bin/bash
+build: ## Build all containers
+	docker compose build
 
-mysql:
-	docker-compose exec mysql /bin/bash
+up: ## Start all containers
+	docker compose up
 
-pgsql:
-	docker-compose exec pgsql /bin/bash
+down: ## Stop all containers
+	docker compose down
+
+php: ## Enter PHP container
+	docker compose exec ${CONTAINER_PHP} /bin/bash
+
+#---------------------------------------------------- NPM commands ----------------------------------------------------#
+
+watch: ## Watch assets
+	npm run dev
+
+prod: ## Build assets
+	npm run build
+
+#--------------------------------------------------- Common commands --------------------------------------------------#
+
+debug: ## Debug artisan command, for example: make debug app:test-command
+	docker compose exec ${CONTAINER_PHP} php -dxdebug.mode=debug -dxdebug.start_with_request=yes -dxdebug.client_port=9000 -dxdebug.client_host=host.docker.internal $(RUN_ARGS)

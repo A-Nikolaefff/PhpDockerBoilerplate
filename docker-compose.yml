@@ -1,65 +1,65 @@
-version: '3'
 services:
 
-#Nginx
   nginx:
-    image: nginx
-    restart: unless-stopped
+    image: nginx:alpine
     volumes:
       - ./:/var/www
-      - ./_docker/nginx/config/default.conf:/etc/nginx/conf.d/default.conf
+      - ./_/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
     depends_on:
       - php
+    networks:
+      - web
 
-#PHP
   php:
     build:
-      context: _docker/php
-      args:
-        - UID=${LOCAL_UID:-1000}
-        - GID=${LOCAL_GID:-1000}
-    restart: unless-stopped
-    env_file:
-      - .env
-    volumes:
-      - ./:/var/www
-      - ./_docker/php/config/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./_docker/php/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-
-#PostgreSQL
-  pgsql:
-    build:
-      context: _docker/postgresql
-      args:
-        - UID=${LOCAL_UID:-1000}
-        - GID=${LOCAL_GID:-1000}
-    restart: unless-stopped
-    ports:
-      - "${PGSQL_PORT}:5432"
-    volumes:
-      - pgsql-database:/postgresql/data:/var/lib/postgresql/data
+      dockerfile: _/docker/php/Dockerfile
     environment:
-      POSTGRES_USER: "${PGSQL_USER}"
-      POSTGRES_PASSWORD: "${PGSQL_PASSWORD}"
-      POSTGRES_DB: "${PGSQL_DB}"
+      PHP_IDE_CONFIG: serverName=localhost
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    volumes:
+      - ./:/var/www/
+    networks:
+      - web
 
-#MySQL
   mysql:
-    image: mysql:5.7
-    restart: unless-stopped
-    tty: true
+    image: mysql:8.3
     ports:
-      - "${MYSQL_PORT}:3306"
+      - "3306:3306"
     volumes:
-      - mysql-database:/mysql/data:/var/lib/mysql
+      - mysql-database:/var/lib/mysql
     environment:
-      MYSQL_DATABASE: "${MYSQL_DATABASE}"
-      MYSQL_ROOT_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      TZ: Europe/Moscow
+    networks:
+      - web
+
+  pgsql:
+    image: postgres:16.2
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgsql-database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
 
 volumes:
   mysql-database:
     driver: local
   pgsql-database:
     driver: local
+
