@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
     sudo \
     vim \
     nano \
+    cron \
+    supervisor \
     libpq-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -48,7 +50,7 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-in
 #----------------------------------------------------------------------------------------------------------------------#
 
 #------------------------------------------ Copy php.ini --------------------------------------------------------------#
-COPY _/docker/php/php.ini /usr/local/etc/php/php.ini
+COPY .docker/php/php.ini /usr/local/etc/php/php.ini
 #----------------------------------------------------------------------------------------------------------------------#
 
 #---------------------------------------- Install xdebug --------------------------------------------------------------#
@@ -89,14 +91,18 @@ RUN echo -e "en_US.UTF-8 UTF-8 \\nru_RU.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen
 #----------------------------------------------------------------------------------------------------------------------#
 
+#--------------------------------------- Set config supervisor --------------------------------------------------------#
+RUN mkdir -p /etc/supervisor.d/
+COPY .docker/php/supervisor/supervisord.conf /etc/supervisord.conf
+COPY .docker/php/supervisor/app.conf /etc/supervisor/app.conf
+#----------------------------------------------------------------------------------------------------------------------#
+
+#----------------------------------------------------------------------------------------------------------------------#
+
+#------------------- Set the user as the owner of the home directory and all directories and files in it --------------#
 RUN chown -R $user:$user /home/$user
 
+#------------------------------------- Set working directory and active user ------------------------------------------#
 WORKDIR /var/www/
 USER $user
-
-# Run php-fpm
-CMD bash -c "php-fpm -F"
-
-EXPOSE 9000
-
 
