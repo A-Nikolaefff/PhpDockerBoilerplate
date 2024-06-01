@@ -1,13 +1,26 @@
 {
-  "name": "anikolaefff/php-docker-boilerplate",
+  "name": "anikolaefff/php-nginx-boilerplate",
+  "type": "project",
+  "description": "Docker php environment",
+  "keywords": [
+    "Docker",
+    "Nginx",
+    "Php",
+    "MySQL"
+  ],
   "autoload": {
     "psr-4": {
       "App\\": "app/"
     }
   },
+  "homepage": "https://github.com/a-nikolaefff/php-nginx-boilerplate",
+  "license": "MIT",
   "authors": [
     {
-      "name": "anikolaefff"
+      "name": "Alexander Nikolaev",
+      "email": "nikrond@gmail.com",
+      "homepage": "https://github.com/a-nikolaefff",
+      "role": "Developer"
     }
   ],
   "require": {}
