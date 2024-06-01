@@ -7,7 +7,7 @@ help: ## Print help
 
 #--------------------------------------------- New project init command -----------------------------------------------#
 
-init: ## Init new laravel project with name "laravel/laravel". You will be able to change this in composer.json later.
+init: ## Init new composer project and generate autoload files
 	@docker compose run --rm php sh -c "composer install"
 
 #------------------------------------------------- Docker commands ----------------------------------------------------#
@@ -16,7 +16,7 @@ build: ## Build all containers
 	docker compose build
 
 up: ## Start all containers
-	docker compose up
+	docker compose up -d
 
 down: ## Stop all containers
 	docker compose down
