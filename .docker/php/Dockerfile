@@ -102,7 +102,14 @@ COPY .docker/php/supervisor/app.conf /etc/supervisor/app.conf
 #------------------- Set the user as the owner of the home directory and all directories and files in it --------------#
 RUN chown -R $user:$user /home/$user
 
+#--------------------------------------------- Set custom entrypoint --------------------------------------------------#
+COPY .docker/php/start.sh /usr/bin/start.sh
+RUN chmod +x /usr/bin/start.sh
+
+CMD ["sh", "/usr/bin/start.sh"]
+#----------------------------------------------------------------------------------------------------------------------#
+
 #------------------------------------- Set working directory and active user ------------------------------------------#
 WORKDIR /var/www/
 USER $user
-
+#----------------------------------------------------------------------------------------------------------------------#
